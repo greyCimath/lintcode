@@ -1,2 +1,2 @@
 # lintcode
-Mark my thought of lintcode and solution
+  this project is used to mark my thought of algorithm question.
