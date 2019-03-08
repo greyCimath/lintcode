@@ -1,2 +1,6 @@
 # lintcode
-  this project is used to mark my thought of algorithm question.
+  this repository used to solve Lintcode problem.
+  ---------------------------------------------------------
+  sometime,I will do some Lintcode questions.Now I'm learning
+  Classic Introduction of Algorithm competition,so there some 
+  UVa problem answer have been upload.

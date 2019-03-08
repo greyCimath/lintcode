@@ -47,7 +47,56 @@ vc.push_back(readint());
 /***********************************************
  * 二维几何运算操作
  * *********************************************/
+struct Point{
+    int x,y;
+    Point(int x = 0,int y = 0):x(x),y(y) {}
+    Point& operator=(Point& p) : {x = p.x;y = p.y;return *this;}
+};
+typedef Point Vector;
 
+Vector operator+(const Vector& A,const Vector& B){
+    return Vector(A.x + B.x,A.y + B.y);
+}
+
+Vector operator-(const Vector& A,const Vector& B){
+    return Vector(A.x - B.x,A.y - B.y);
+}
+
+Vector operator*(const Vector& A,int p){
+    return Vector(A.x * p,A.y * p);
+}
+
+bool operator==(const Point &a,const Point &b){
+    return a.x == b.x && a.y == b.y;
+}
+
+bool operator< (const Point& p1,const Point& p2){
+    return p1.x < p2.x || (p1.x == p2.x && p1.y < p2.y);
+}
+
+istream& operator>>(istream& is,Point& p){
+    return is>>p.x>>p.y;
+}
+
+
+/**********************************************
+ * 内存池
+ * ********************************************/
+template<typename T>
+struct Pool{
+    vector<T*> buf;
+    T* creatNew(){
+        buf.push_back(new T());
+        return buf.back();
+    }
+
+    void dispose(){
+        for(int i = 0;i < buf.size();i++){
+            delete buf[i];
+        }
+        buf.clear();
+    }
+};
 
 int main(){
     vector<int> a;
