@@ -1,8 +1,8 @@
 public class Client{
 	public static void main(String[] args){
 		int ans = 0;
-		Solution solution_2 = new Solution();
-		ans = solution_2.LintCode_2(100);
+		Solution solution_3 = new Solution();
+		ans = solution_3.LintCode_3(9,999);
 		System.out.println(ans);
 	}
 }
