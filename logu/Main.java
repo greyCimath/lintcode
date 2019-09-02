@@ -235,8 +235,164 @@ public class Main{
 		System.out.println(ans);
 	}
 	
+	// LuoGu P1980
+	// 试计算在区间 11 到 n n的所有整数中，数字 x(0 ≤ x ≤ 9)x(0≤x≤9)共出现了多少次？
+	public static void P1980(){
+		int n = 0;	int x = 0;	long ans = 0L;	int i = 0;
+		Scanner cin = new Scanner(System.in);
+		n = cin.nextInt();
+		x = cin.nextInt();
+		for(i = 1;i <= n;i++){
+			int tmp = i;
+			while(tmp > 0){
+				if((tmp % 10) == x){
+					ans += 1;
+				}
+				tmp = tmp / 10;
+			}
+		}
+		System.out.println(ans);
+	}
+	
+	// LuoGu P1046
+	// 陶陶有个3030厘米高的板凳现在已知1010个苹果到地面的高度，
+	// 以及陶陶把手伸直的时候能够达到的最大高度，请帮陶陶算一下她能够摘到的苹果的数目。
+	public static void P1046(){
+		int[] hight = new int[10];
+		int h = 0;	int ans = 0;
+		Scanner cin = new Scanner(System.in);
+		for(int i = 0;i < 10;i++){
+			hight[i] = cin.nextInt();
+		}
+		h = cin.nextInt();
+		for(int i = 0;i < 10;i++){
+			if((h + 30) >= hight[i]){
+				ans += 1;
+			}
+		}
+		System.out.println(ans);
+	}
+	
+	// LuoGu P1047
+	// 数轴上的每个整数点，即0,1,2,…,L0,1,2,…,L，都种有一棵树。已知任一区域的起始点和终止点的坐标都是整数，区域之间可能有重合的部分。
+	// 现在要把这些区域中的树（包括区域端点处的两棵树）移走。你的任务是计算将这些树都移走后，马路上还有多少棵树
+	public static void P1047(){
+		int L = 0;	int M = 0;	int ans = 0;
+		Scanner cin = new Scanner(System.in);
+		L = cin.nextInt();
+		M = cin.nextInt();
+		int[] location = new int[2 * M];
+		for(int i = 0;i < 2 * M;i++){
+			location[i] = cin.nextInt();
+		}
+		ans = L + 1;
+		for(int j = 0;j <= L;j++){
+			for(int i = 0;i < 2 * M;i += 2){
+				if(j >= location[i] && j <= location[i + 1]){
+					ans -= 1;
+					break;
+				}
+			}	
+		}
+		System.out.println(ans);
+	}
+	
+	// LuoGu P1427
+	// 把看到的一串数字（长度不一定，以0结束，最多不超过100个，数字不超过2^32-1），记住了然后反着念出来
+	public static void P1427(){
+		ArrayList<Integer> num = new ArrayList<Integer>();
+		Scanner cin = new Scanner(System.in);
+		int tmp = 0;
+		while(true){
+			tmp = cin.nextInt();
+			if(tmp == 0){
+				break;
+			} else {
+				num.add(tmp);
+			}
+		}
+		for(int i = num.size() - 1;i > 0;i--){
+			System.out.printf("%s ",num.get(i));
+		}
+		System.out.printf("%s",num.get(0));
+	}
+	
+	// LuoGu P1428
+	// 由于所有的鱼头都朝向左边，所以每只鱼只能看见在它左边的鱼的可爱程度，它们心里都在计算，
+	// 在自己的眼力范围内有多少只鱼不如自己可爱呢
+	public static void P1428(){
+		Scanner cin = new Scanner(System.in);
+		int ans = 0;	int num = 0;
+		num = cin.nextInt();
+		int[] cute = new int[num];
+		for(int i = 0;i < num;i++){
+			cute[i] = cin.nextInt();
+		}
+		System.out.printf("0");
+		for(int i = 1;i < num;i++){
+			ans = 0;
+			for(int j = 0;j < i;j++){
+				if(cute[j] < cute[i]){
+					ans += 1;
+				}
+			}
+			System.out.printf(" %s",ans);
+		}
+	}
+	
+	// LuoGu P2141
+	// 随机生成一个正整数集合,其中有多少个数，恰好等于集合中另外两个（不同的）数之和？
+	public static void P2141(){
+		int size = 0;	int tmp = 0;	int ans = 0;
+		Scanner cin = new Scanner(System.in);
+		size = cin.nextInt();
+		int[] number = new int[size];
+		int[] num_flag = new int[size];
+		for(int i = 0;i < size;i++){
+			number[i] = cin.nextInt();
+			num_flag[i] = 0;
+		}
+		for(int i = 0;i < size - 1;i++){
+			for(int j = i + 1;j < size;j++){
+				tmp = number[i] + number[j];
+				for(int k = 0;k < size;k++){
+					if(tmp == number[k] && num_flag[k] == 0){
+						num_flag[k] = 1;
+					}
+				}
+			}
+		}
+		for(int i = 0;i < size;i++){
+			ans += num_flag[i];
+		}
+		System.out.println(ans);
+	}
+	
+	// LuoGu P1567
+	// 最高气温一直上升的最长连续天数
+	public static void P1567(){
+		int num = 0;	int ans_tmp = 0;	int ans = -1;
+		int tmp_l = 0;	int tmp = 0;
+		Scanner cin = new Scanner(System.in);
+		num = cin.nextInt();
+		tmp_l = cin.nextInt();
+		while(--num > 0){
+			tmp = cin.nextInt();
+			if(tmp > tmp_l){
+				ans_tmp += 1;
+			} else {
+				if(ans < ans_tmp){
+					ans = ans_tmp;
+				}
+				ans_tmp = 0;
+			}
+			tmp_l = tmp;
+		}
+		System.out.println(ans + 1);
+	}
+	
 	public static void main(String[] args){
 		Main sol = new Main();
-		sol.P1424();
+		sol.P1567();
 	}
 }
