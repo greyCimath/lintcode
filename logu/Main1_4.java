@@ -1,7 +1,11 @@
 import java.io.*;
 import java.util.*;
 
-public class Main{
+public class Main{	
+	public static void main(String[] args){
+		Main sol = new Main();
+		sol.P1567();
+	}
 	// LuoGu P1000
 	public static void P1000(){
 		System.out.println("                ********");
@@ -390,9 +394,5 @@ public class Main{
 		}
 		System.out.println(ans + 1);
 	}
-	
-	public static void main(String[] args){
-		Main sol = new Main();
-		sol.P1567();
-	}
+
 }
